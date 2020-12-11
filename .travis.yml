@@ -9,3 +9,12 @@ script:
 - npm install
 - echo 'Testing'
 - npm test
+deploy:
+  provider: heroku
+  api_key:
+    secure: rTahKVmzUc0kUInHPr+gioCs4BvUplmr2NViDwR3lLEV1f8slRipzEb3opdiBoHTVXePBSvkN9RJREv9OstkZkTPaxJSaI+qBEUt6CN5v1itQhB364Vv65ezEVAl4YjcJfclc6Ft0y2p527HMAsxjqCf6rq6Cjr6hNvlymDg90vHVlD5OG4jlQXPt1P4x4+ZQMTcadU/6APf29rbmNPb/JWsWrQi7plEksLgiPn90/UDWiWE2kzI2RwnJeyQdXcZRTwLIkNUBDiyQNGwi+SVYivnMX0ykRU6v8088exLtQ8tqvT5X0gO5uUL5N3g8Xed9YrE6C0SDdCErP6iWRHecOw1NQxq8q9Rzkay4Olz1DZueI2F/xmaTtr4vTk27NYOdO3wCcI0gMDfE1l6UgVTuOzU9D/85MY8gS5o+w/MB/oDFI2IgcH4kqLpvhd7HZfrVKIDgZVZ6P+Uirv3WCYBSKRGojVwx/JS52XD75hcvV1L2XXqq8DsKlp5D7cg0oF0nTH3ILTGCgNoV5Y5xxaM3fPv2jrCBQjahsDU27AmsG88VyCm2KaAF+2lHhZc15eTVuE+bOQzfSErQ2ujwsFrUvsI8RDXMODM5Cpafn1N/8XRZg+XsrvwmzqcA7VemkDX6IuJIJpAvXIDFPEDeXgGTKGaCmzwIZWZh2JV31rx9ks=
+  app: devops-project1
+  on:
+    repo: RaphaelBhnk/Devops-Project
+    branch: main
+  skip_cleanup: 'true'
