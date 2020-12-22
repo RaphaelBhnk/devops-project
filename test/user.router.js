@@ -71,7 +71,7 @@ describe('User REST API', () => {
           done()
         })
         .catch((err) => {
-           throw err
+          throw err
         })
     })
 
@@ -86,9 +86,25 @@ describe('User REST API', () => {
           done()
         })
         .catch((err) => {
-           throw err
+          throw err
         })
     })
 
-   })
+  })
+  describe('DELETE /user', ()=> {
+
+    it('succesfully delete user', (done) => {
+      chai.request(app)
+        .delete('/user/serkudinov')
+        .then((res) => {
+          chai.expect(res).to.have.status(200)
+          chai.expect(res.body.status).to.equal('success')
+          chai.expect(res).to.be.json
+          done()
+        })
+        .catch((err) => {
+          throw err
+        })
+    })
+  })
 })

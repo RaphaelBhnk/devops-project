@@ -92,4 +92,38 @@ describe('User', () => {
     })
 
   })
+
+    describe('Update', ()=> {
+      it('update a user', (done) => {
+        const user = {
+          username: 'sergkudinov',
+          firstname: 'Sergi',
+          lastname: 'Kudinov'
+        }
+        userController.create(user, (error, res) => {
+          userController.update(user, (err, result) => {
+            expect(err).to.be.equal(null)
+            expect(result).to.be.equal('OK')
+            done()
+          })
+      })
+      })
+    })
+
+    describe('Delete', ()=> {
+      it('delete a user', (done) => {
+        const user = {
+          username: 'sergkudinov',
+          firstname: 'Sergi',
+          lastname: 'Kudinov'
+        }
+        userController.create(user, (error, res) => {
+          userController.delete(user.username, (err, result) => {
+            expect(err).to.be.equal(null)
+            expect(result).to.be.equal(1)
+            done()
+          })
+      })
+      })
+    })
 })
