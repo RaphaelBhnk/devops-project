@@ -5,7 +5,7 @@ metadata:
   labels:
     app: devops-project
 spec:
-  replicas: 3
+  replicas: 1
   selector:
     matchLabels:
       app: devops-project
@@ -14,6 +14,19 @@ spec:
       labels:
         app: devops-project
     spec:
+      volumes:
+      - name: task-pv-storage
+        persistentVolumeClaim:
+          claimName: task-pv-claim
       containers:
-      - name: devops-project
-      - port: 3006
+      - name: redis
+        image: redis
+        ports:
+        - containerPort: 6379
+      - name: projetd
+        image: weepizz/devops-project_web
+        ports:
+        - containerPort: 3006
+        volumeMounts:
+        - mountPath: "/urs/share/redis/js"
+          name: task-pv-storage
