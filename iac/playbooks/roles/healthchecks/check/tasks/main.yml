@@ -1,0 +1,10 @@
+- name: Check myApp health
+  uri:
+    url: http://127.0.0.1/-/health
+    return_content: yes
+  # Register the output of the module in a variable
+  register: myApp_health
+
+- name: Print myApp health
+  debug:
+    msg: "{{ myApp_health.content }}"
