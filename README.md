@@ -1,68 +1,92 @@
-# User API web application
+# DevOps Project
 
-It is a basic NodeJS web application exposing REST API that creates and stores user parameters in [Redis database](https://redis.io/).
+Here is our final devops-project.
 
-## Functionality
+## 1. Work performed
 
-1. Start a web server
-2. Create a user
+### 1. Unit tests
 
-## Installation
+We used Mocha and Chai dependencies. We performed 15 tests including 7 User tests and 5 User REST/API tests.
 
-This application is written on NodeJS and it uses Redis database.
+### 2. CI/CD pipeline using Travis CI & Heroku 
 
-1. [Install NodeJS](https://nodejs.org/en/download/)
+We choosed to apply CI/CD pipeline using [Travis CI](https://travis-ci.com/github/RaphaelBhnk/devops-project)  for the CI part, and [Heroku](https://devops-project1.herokuapp.com) platform for the CD part.
 
-2. [Install Redis](https://redis.io/download)
+### 3. Provision a virtual environment and run our application using iaC approach
 
-3. Install application
+We created a virtual machine with one distribution of Linux : centos. We created several tasks: 
+-Health check of our application.
+-Installation of our database: Redis.
+-Installation of Node.js.
 
-Go to the root directory of the application (where `package.json` file located) and run:
+We synced our application on the host machine tio the guest machine.
 
+### 4. Docker image of our application
+
+We created the Docker image of our application : devops-project available [here]https://hub.docker.com/repository/docker/weepizz/devops-project_web) on Docker Hub.
+
+### 5. Container orchestration using Docker Compose
+
+We added our docker-compose.yaml file which start our containers and so the application.
+
+### 6. Docker orchestration using Kubernetes
+
+We created the k8s folders, which contains all our .yaml Kubernetes files needed for the containers orchestration.
+
+## 2. Instructions 
+
+### Installation, Usage & Testing : 
+
+Start application:
 ```
-npm install 
-```
+# Clone the repository
 
-## Usage
+git clone https://github.com/RaphaelBhnk/devops-project
 
-1. Start a web server
+# Download the dependencies
 
-From the root directory of the project run:
+cd devops-project
+npm install
 
-```
+# Start the development server
 npm start
 ```
 
-It will start a web server available in your browser at http://localhost:3000.
-
-2. Create a user
-
-Send a POST (REST protocol) request using terminal:
-
-```bash
-curl --header "Content-Type: application/json" \
-  --request POST \
-  --data '{"username":"sergkudinov","firstname":"sergei","lastname":"kudinov"}' \
-  http://localhost:3000/user
-```
-
-It will output:
-
-```
-{"status":"success","msg":"OK"}
-```
-
-Another way to test your REST API is to use [Postman](https://www.postman.com/).
-
-## Testing
-
-From the root directory of the project, run:
-
+Run tests:
 ```
 npm test
 ```
 
-## Author
+Vagrant:
+```
+cd iaC
+vagrant up
+```
+Docker-compose:
+```
+docker-compose up
+```
+Kubernetes: 
+```
+cd k8s
+minikube start
+kubectl apply -f deployment.yaml
+kubectl apply -f service.yaml
+kubectl apply -f pv-claim.yml
+kubectl apply -f pv-volume.yaml
+```
+## 3. Necesseray links with the platforms and tools integrated: 
 
-Sergei Kudinov   
-sergei@adaltas.com
+| Realisations | URL |
+|---------|-------|
+| Travis CI :  | https://travis-ci.com/github/RaphaelBhnk/devops-project |
+| Heroku deployment : | https://devops-project1.herokuapp.com |
+| Docker Hub : | https://hub.docker.com/repository/docker/weepizz/devops-project_web |
+
+## 4. Authors
+
+Raphael BOUHNIK 
+raphael.bouhnik@edu.ece.fr
+
+Adrien ZYCHOWSKI 
+adrien.zychowski@edu.ece.fr
